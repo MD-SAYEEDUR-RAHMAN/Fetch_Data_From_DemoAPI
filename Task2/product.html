@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #4CAF50;
+
+        }
+        .product-container {
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .product-container img {
+            width: 100%;
+            height: auto;
+        }
+        .product-container h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .product-container p {
+            margin: 10px 0;
+        }
+        .price {
+            font-size: 20px;
+            color: rgb(134, 7, 13);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="productContainer" class="product-container">
+        <!-- Product details will be loaded here -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the product ID from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+
+            if (!productId) {
+                document.getElementById('productContainer').innerHTML = '<p>Product not found. Please go back to the product list.</p>';
+                return;
+            }
+
+            // Fetch product details from the DummyJSON API
+            fetch(`https://dummyjson.com/products/${productId}`)
+                .then(response => response.json())
+                .then(product => {
+                    const productContainer = document.getElementById('productContainer');
+
+                    // Display the product details
+                    productContainer.innerHTML = `
+                        <img src="${product.thumbnail}" alt="${product.title}">
+                        <h1>${product.title}</h1>
+                        <p class="price">$${product.price}</p>
+                        <p><strong>Category:</strong> ${product.category}</p>
+                        <p><strong>Description:</strong> ${product.description}</p>
+                        <p><strong>Stock:</strong> ${product.stock}</p>
+                        <p><strong>Rating:</strong> ${product.rating}</p>
+                    `;
+                })
+                .catch(error => {
+                    console.error('Error fetching product:', error);
+                    const productContainer = document.getElementById('productContainer');
+                    productContainer.innerHTML = '<p>Failed to load product details. Please try again later.</p>';
+                });
+        });
+    </script>
+
+</body>
+</html>

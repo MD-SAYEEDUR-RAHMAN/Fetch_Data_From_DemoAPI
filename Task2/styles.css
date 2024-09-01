@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #4CAF50;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+
+#sortSelect {
+    display:inline-block;
+    margin: 20px auto;
+    padding: 10px;
+    font-size: 16px;
+    color: rgb(241, 79, 79);
+}
+
+.product {
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fafafa;
+}
+
+.product h2 {
+    margin: 0 0 10px;
+    font-size: 20px;
+}
+
+.product p {
+    margin: 5px 0;
+}
+
+.product .price {
+    color: green;
+    font-weight: bold;
+}
